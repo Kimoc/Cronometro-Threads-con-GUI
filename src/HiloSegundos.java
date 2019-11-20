@@ -42,7 +42,7 @@ public class HiloSegundos implements Runnable{
 					
 				} catch (InterruptedException e) {
 					//Cambiando el estado del flag desde el boton Stop obligamos que salte la expepcion
-					//Y como esa excepcion ocurre en el mismo trhead actual podemos utilizar el metodo de interrupt().
+					//Y como esa excepcion ocurre en el mismo trhead podemos utilizar el metodo de interrupt().
 					Thread.currentThread().interrupt();
 					e.printStackTrace();
 					

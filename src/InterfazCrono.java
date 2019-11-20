@@ -34,7 +34,7 @@ public class InterfazCrono extends JFrame {
 	 */
 	public InterfazCrono() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 670, 267);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -43,30 +43,27 @@ public class InterfazCrono extends JFrame {
 		//START inizia los trheads que haran de contadores 
 		/*
 		 * 
-		 *   Hilo 1 == contador segundos
-		 *   Hilo 2 == contador minutos
-		 *   Hilo 3 == contador horas
+		 *   Hilo 1 == contador milisegundos
+		 *   Hilo 2 == contador segundos
+		 *   Hilo 3 == contador minutos
 		 * 
 		 * 
 		 * */
 		
+		JLabel minutosLabel = new JLabel("00");
+		minutosLabel.setFont(new Font("Courier 10 Pitch", Font.BOLD, 70));
+		minutosLabel.setBounds(50, 67, 103, 65);
+		contentPane.add(minutosLabel);
 		
+		JLabel segundosLabel = new JLabel("00");
+		segundosLabel.setFont(new Font("Courier 10 Pitch", Font.BOLD, 70));
+		segundosLabel.setBounds(165, 67, 103, 65);
+		contentPane.add(segundosLabel);
 		
-		
-		JLabel Horas = new JLabel("00");
-		Horas.setFont(new Font("Courier 10 Pitch", Font.BOLD, 70));
-		Horas.setBounds(50, 67, 103, 65);
-		contentPane.add(Horas);
-		
-		JLabel Minutos = new JLabel("00");
-		Minutos.setFont(new Font("Courier 10 Pitch", Font.BOLD, 70));
-		Minutos.setBounds(165, 67, 103, 65);
-		contentPane.add(Minutos);
-		
-		JLabel Segundos = new JLabel("00");
-		Segundos.setFont(new Font("Courier 10 Pitch", Font.BOLD, 70));
-		Segundos.setBounds(291, 67, 103, 65);
-		contentPane.add(Segundos);
+		JLabel miliSegundosLabel = new JLabel("000");
+		miliSegundosLabel.setFont(new Font("Courier 10 Pitch", Font.BOLD, 70));
+		miliSegundosLabel.setBounds(291, 67, 201, 65);
+		contentPane.add(miliSegundosLabel);
 		
 		JLabel label_3 = new JLabel(":");
 		label_3.setFont(new Font("Bitstream Charter", Font.BOLD, 70));
@@ -92,20 +89,22 @@ public class InterfazCrono extends JFrame {
 		//STOP BUTTON
 		JButton btnStop = new JButton("Stop");
 		
-		btnStop.setBounds(271, 183, 114, 25);
+		btnStop.setBounds(291, 183, 114, 25);
 		contentPane.add(btnStop);
 		
 		
 		//START BUTTON 
-		Hilo1.setBounds(291, 30, 66, 25);
+		Hilo1.setBounds(318, 30, 66, 25);
 		contentPane.add(Hilo1);
 		JButton btnStart = new JButton("Start");
 		btnStart.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				//Creamos Iniziamos Hilos del cronometro
-				HiloSegundos segundosHilo=new HiloSegundos(Segundos);
+				//Creamos e Iniziamos Hilos del cronometro
+				HiloMiliSegundos milisegundosHilo=new HiloMiliSegundos(miliSegundosLabel);
+				milisegundosHilo.start();
+				HiloSegundos segundosHilo=new HiloSegundos(segundosLabel);
 				segundosHilo.start();
-				HiloMinutos minutosHilo=new HiloMinutos(Minutos);
+				HiloMinutos minutosHilo=new HiloMinutos(minutosLabel);
 				minutosHilo.start();
 				
 				
@@ -114,6 +113,7 @@ public class InterfazCrono extends JFrame {
 				//SI APRETAMOS STOP SE INTERRUMPEN LOS THREADS
 				btnStop.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
+						milisegundosHilo.stop();
 						segundosHilo.stop();
 						minutosHilo.stop();
 					}

@@ -3,16 +3,16 @@ import java.util.concurrent.atomic.AtomicBoolean;
 import javax.swing.JLabel;
 
 public class HiloMiliSegundos implements Runnable{
-    Thread hilo1;
-	JLabel labelSegundos;
-	int contadorSegundos;
+    Thread hiloMilisegundos;
+	JLabel labelMiliSegundos;
+	int contadorMiliSegundos;
 	private final AtomicBoolean running = new AtomicBoolean(false);//FLAG
 	
 	boolean ejecutar;
     public HiloMiliSegundos(JLabel labelSegundos) {
-    	this.hilo1=new Thread(this,"HiloSegundos");
-    	this.labelSegundos=labelSegundos;
-    	this.contadorSegundos=0;
+    	this.hiloMilisegundos=new Thread(this,"HiloMilisegundos");
+    	this.labelMiliSegundos=labelSegundos;
+    	this.contadorMiliSegundos=0;
 	}
     
     //PARA PARAR EL THREAD
@@ -21,8 +21,8 @@ public class HiloMiliSegundos implements Runnable{
     }
     //Genera nuevo hilo y lo inizia
     public void start() {
-        hilo1 = new Thread(this);
-        hilo1.start();
+        hiloMilisegundos = new Thread(this);
+        hiloMilisegundos.start();
     }
 	@Override
 	public void run() {
@@ -30,14 +30,14 @@ public class HiloMiliSegundos implements Runnable{
 		while(running.get()) {
 		
 				try {
-					//Para que de 0 a 10 se imprima con 2 digitos
-					if(contadorSegundos<10) {
-						labelSegundos.setText("0"+String.valueOf(contadorSegundos++));
-					}else{
-						labelSegundos.setText(String.valueOf(contadorSegundos++));
+					
+				    if(contadorMiliSegundos<100){
+						labelMiliSegundos.setText("0"+String.valueOf((contadorMiliSegundos++)));
+					}else {
+						labelMiliSegundos.setText(String.valueOf((contadorMiliSegundos++)));
 					}
-					//Para cada Segundo
-					Thread.sleep(1000);
+					//Para cada milisegundo
+					Thread.sleep(1);
 					
 					
 				} catch (InterruptedException e) {
@@ -47,8 +47,8 @@ public class HiloMiliSegundos implements Runnable{
 					e.printStackTrace();
 					
 				}
-				if(contadorSegundos>=60) {
-					contadorSegundos=0;
+				if(contadorMiliSegundos>=1000) {
+					contadorMiliSegundos=0;
 				}
 			
 			
