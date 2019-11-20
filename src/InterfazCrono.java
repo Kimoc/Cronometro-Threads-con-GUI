@@ -99,7 +99,7 @@ public class InterfazCrono extends JFrame {
 		JButton btnStart = new JButton("Start");
 		btnStart.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				//Creamos e Iniziamos Hilos del cronometro
+				//instanciamos e Iniciamos Hilos del cronometro
 				HiloMiliSegundos milisegundosHilo=new HiloMiliSegundos(miliSegundosLabel);
 				milisegundosHilo.start();
 				HiloSegundos segundosHilo=new HiloSegundos(segundosLabel);
