@@ -10,7 +10,7 @@ public class HiloMinutos implements Runnable{
 	
 	boolean ejecutar;
     public HiloMinutos(JLabel labelMin) {
-    	this.hilo2=new Thread(this,"HiloMinutos");
+    //	this.hilo2=new Thread(this,"HiloMinutos");
     	this.labelMinutos=labelMin;
     	this.contadorMinutos=0;
 	}
@@ -54,11 +54,7 @@ public class HiloMinutos implements Runnable{
 			
 		}
 	}
-	//GETTER
-	public AtomicBoolean getRunning() {
-		return running;
-	}
-	
+
 	
 	
 }

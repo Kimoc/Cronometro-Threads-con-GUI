@@ -10,7 +10,6 @@ public class HiloMiliSegundos implements Runnable{
 	
 	boolean ejecutar;
     public HiloMiliSegundos(JLabel labelSegundos) {
-    	this.hiloMilisegundos=new Thread(this,"HiloMilisegundos");
     	this.labelMiliSegundos=labelSegundos;
     	this.contadorMiliSegundos=0;
 	}
@@ -53,10 +52,6 @@ public class HiloMiliSegundos implements Runnable{
 			
 			
 		}
-	}
-	//GETTER
-	public AtomicBoolean getRunning() {
-		return running;
 	}
 	
 	

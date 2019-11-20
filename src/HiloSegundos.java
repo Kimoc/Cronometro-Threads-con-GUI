@@ -8,9 +8,8 @@ public class HiloSegundos implements Runnable{
 	int contadorSegundos;
 	private final AtomicBoolean running = new AtomicBoolean(false);//FLAG
 	
-	boolean ejecutar;
     public HiloSegundos(JLabel labelSegundos) {
-    	this.hilo1=new Thread(this,"HiloSegundos");
+    	//this.hilo1=new Thread(this,"HiloSegundos");
     	this.labelSegundos=labelSegundos;
     	this.contadorSegundos=0;
 	}
@@ -26,7 +25,7 @@ public class HiloSegundos implements Runnable{
     }
 	@Override
 	public void run() {
-		running.set(true);
+		running.set(true);//flag
 		while(running.get()) {
 		
 				try {
@@ -43,7 +42,7 @@ public class HiloSegundos implements Runnable{
 				} catch (InterruptedException e) {
 					//Cambiando el estado del flag desde el boton Stop obligamos que salte la expepcion
 					//Y como esa excepcion ocurre en el mismo trhead podemos utilizar el metodo de interrupt().
-					Thread.currentThread().interrupt();
+					Thread.currentThread().interrupt();//interrumpimos el hilo
 					e.printStackTrace();
 					
 				}
@@ -54,10 +53,7 @@ public class HiloSegundos implements Runnable{
 			
 		}
 	}
-	//GETTER
-	public AtomicBoolean getRunning() {
-		return running;
-	}
+
 	
 	
 	
